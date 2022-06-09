@@ -1,0 +1,24 @@
+version: "3.3"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: app:latest
+    container_name: "app"
+    #command: tail -f /dev/null
+  node:
+    container_name: "node"
+    image: node:17-alpine
+    user: "node"
+    working_dir: /home/node/app
+    environment:      
+      NODE_ENV: production
+      PORT: 3008
+    ports:
+      - 3309:3008
+    volumes:
+      - ./:/home/node/app
+      - ./node_modules:/home/node/node_modules
+    command: sh -c "npm install && npx nodemon ./index.js"
