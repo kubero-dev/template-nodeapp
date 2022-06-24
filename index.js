@@ -5,6 +5,14 @@ try {
 
     const { PORT = 9090 } = process.env;
 
+    let os = require("os");
+    let hostname = os.hostname();
+    let uptime = os.uptime();
+    let arch = os.arch();
+    let release = os.release();
+    let loadavg = os.loadavg();
+    let totalmem = os.totalmem();
+    let env = JSON.stringify(process.env, null, 4)
     /*
     app.use(
         express.static('public')
@@ -12,7 +20,17 @@ try {
     */
 
     app.get('/', (req, res) => {
-        res.send('hostname: <p><pre>'+JSON.stringify(process.env)+'</pre>')
+
+        res.send (`
+        hostname : ${hostname}<p>
+        uptime : ${uptime}<p>
+        arch : ${arch}<p>
+        release : ${release}<p>
+        loadavg : ${loadavg}<p>
+        totalmem : ${totalmem}<p>
+        <pre><code>${env}</code></pre>
+        
+        `)
     });
 
     app.get('/hello', (req, res) => {
