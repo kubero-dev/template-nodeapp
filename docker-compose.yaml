@@ -8,6 +8,10 @@ services:
     image: app:latest
     container_name: "app"
     #command: tail -f /dev/null
+  appbuild:
+    image: ghcr.io/kubero-dev/template-nodeapp:main
+    container_name: "appbuild"
+    command: tail -f /dev/null
   node:
     container_name: "node"
     image: node:17-alpine
