@@ -1,0 +1,85 @@
+apiversion: application.kubero.dev/v1alpha1
+kind: KuberoApp
+metadata: {}
+spec:
+    addons: []
+    affinity: {}
+    autodeploy: false
+    autoscale: false
+    autoscaling:
+        enabled: false
+    branch: main
+    buildpack: NodeJS
+    cronjobs: []
+    domain: popop.lacolhost.com
+    envvars: []
+    fullnameoverride: ""
+    gitrepo:
+        admin: true
+        cloneurl: https://github.com/kubero-dev/template-nodeapp.git
+        defaultbranch: main
+        description: Simple example Node app
+        homepage: ""
+        id: 501665730
+        language: JavaScript
+        name: template-nodeapp
+        nodeid: R_kgDOHebPwg
+        owner: kubero-dev
+        private: false
+        push: true
+        sshurl: git@github.com:kubero-dev/template-nodeapp.git
+        visibility: public
+    image:
+        fetch:
+            repository: ""
+            tag: ""
+        build:
+            command: ""
+            repository: ""
+            tag: ""
+        run:
+            command: ""
+            repository: ""
+            tag: ""
+        containerport: 8080
+        pullpolicy: ""
+        repository: ""
+        tag: ""
+    imagepullsecrets: []
+    ingress:
+        annotations: {}
+        classname: ""
+        enabled: false
+        hosts: []
+        tls: []
+    name: meintest
+    nameoverride: ""
+    nodeselector: {}
+    phase: production
+    pipeline: clitest2
+    podannotations: {}
+    podsecuritycontext: {}
+    podsize: ""
+    replicacount: 0
+    service:
+        port: 0
+        type: ""
+    serviceaccount:
+        annotations: {}
+        create: false
+        name: ""
+    tolerations: []
+    web:
+        autoscaling:
+            maxreplicas: 0
+            minreplicas: 0
+            targetcpuutilizationpercentage: 0
+            targetmemoryutilizationpercentage: 0
+        replicacount: 1
+    worker:
+        autoscaling:
+            maxreplicas: 0
+            minreplicas: 0
+            targetcpuutilizationpercentage: 0
+            targetmemoryutilizationpercentage: 0
+        replicacount: 0

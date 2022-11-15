@@ -1,0 +1,68 @@
+apiversion: application.kubero.dev/v1alpha1
+kind: KuberoPipeline
+spec:
+    buildpack:
+        build:
+            command: npm install
+            repository: node
+            tag: latest
+        fetch:
+            repository: ghcr.io/kubero-dev/buildpacks/fetch
+            tag: main
+        language: JavaScript
+        name: NodeJS
+        run:
+            command: node index.js
+            repository: node
+            tag: latest
+    deploymentstrategy: git
+    dockerimage: ""
+    git:
+        keys:
+            createdat: 2022-11-15T08:42:40Z
+            id: 73749231
+            readonly: true
+            title: bot@kubero
+            url: https://api.github.com/repos/kubero-dev/template-nodeapp/keys/73749231
+            verified: true
+        repository:
+            provider: Github
+            admin: true
+            cloneurl: https://github.com/kubero-dev/template-nodeapp.git
+            defaultbranch: main
+            description: Simple example Node app
+            homepage: ""
+            id: 501665730
+            language: JavaScript
+            name: template-nodeapp
+            nodeid: R_kgDOHebPwg
+            owner: kubero-dev
+            private: false
+            push: true
+            sshurl: git@github.com:kubero-dev/template-nodeapp.git
+            visibility: public
+        webhook:
+            active: true
+            createdat: 2022-10-30T20:26:50Z
+            events:
+                - pull_request
+                - push
+            id: 386238670
+            insecure: "0"
+            url: https://kubero6d304b3d55d72.loca.lt/api/repo/webhooks/github
+        webhooks: {}
+    name: clitest2
+    phases:
+        - name: review
+          enabled: false
+          context: ""
+        - name: test
+          enabled: false
+          context: ""
+        - name: stage
+          enabled: false
+          context: ""
+        - name: production
+          enabled: true
+          context: inClusterContext
+    reviewapps: false
