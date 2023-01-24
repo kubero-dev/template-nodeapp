@@ -3,5 +3,3 @@ Simple example Node app
 
 
 test pr
-
-ping
