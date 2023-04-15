@@ -1,0 +1,45 @@
+apiVersion: application.kubero.dev/v1alpha1
+kind: KuberoPipeline
+metadata:
+  labels:
+    manager: kubero
+  name: symfony
+spec:
+  buildpack:
+    build:
+      command: composer install; chown -R 1000:1000 /app
+      repository: composer
+      tag: latest
+    fetch:
+      repository: ghcr.io/kubero-dev/buildpacks/fetch
+      tag: main
+    language: PHP
+    name: PHP
+    run:
+      command: apache2-foreground
+      readOnlyAppStorage: false
+      repository: webdevops/php-apache
+      securityContext:
+        allowPrivilegeEscalation: true
+        readOnlyRootFilesystem: false
+      tag: "8.1"
+  deploymentstrategy: git
+  domain: demo.kubero.dev
+  git:
+    provider: github
+    repository:
+      admin: true
+  name: symfony
+  phases:
+  - context: inClusterContext
+    enabled: false
+    name: review
+  - context: inClusterContext
+    enabled: false
+    name: test
+  - context: inClusterContext
+    enabled: false
+    name: stage
+  - context: inClusterContext
+    enabled: true
+    name: production
