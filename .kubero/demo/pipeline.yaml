@@ -3,33 +3,25 @@ kind: KuberoPipeline
 metadata:
   labels:
     manager: kubero
-  name: symfony
+  name: demo
 spec:
   buildpack:
     build:
-      command: composer install; chown -R 1000:1000 /app
-      repository: composer
+      command: npm install
+      repository: node
       tag: latest
     fetch:
       repository: ghcr.io/kubero-dev/buildpacks/fetch
       tag: main
-    language: PHP
-    name: PHP
+    language: JavaScript
+    name: NodeJS
     run:
-      command: apache2-foreground
-      readOnlyAppStorage: false
-      repository: webdevops/php-apache
-      securityContext:
-        allowPrivilegeEscalation: true
-        readOnlyRootFilesystem: false
-      tag: "8.1"
+      command: node index.js
+      repository: node
+      tag: latest
   deploymentstrategy: git
   domain: demo.kubero.dev
-  git:
-    provider: github
-    repository:
-      admin: true
-  name: symfony
+  name: demo
   phases:
   - context: inClusterContext
     enabled: false
@@ -38,7 +30,7 @@ spec:
     enabled: false
     name: test
   - context: inClusterContext
-    enabled: false
+    enabled: true
     name: stage
   - context: inClusterContext
     enabled: true
