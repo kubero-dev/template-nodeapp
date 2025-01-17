@@ -1,0 +1,37 @@
+apiVersion: application.kubero.dev/v1alpha1
+kind: KuberoPipeline
+metadata:
+  labels:
+    manager: kubero
+  name: dashy
+spec:
+  buildpack:
+    build:
+      command: npm install
+      repository: node
+      tag: latest
+    fetch:
+      repository: ghcr.io/kubero-dev/buildpacks/fetch
+      tag: main
+    language: JavaScript
+    name: NodeJS
+    run:
+      command: node index.js
+      repository: node
+      tag: latest
+  deploymentstrategy: git
+  domain: demo.kubero.dev
+  name: dashy
+  phases:
+  - context: inClusterContext
+    enabled: false
+    name: review
+  - context: inClusterContext
+    enabled: false
+    name: test
+  - context: inClusterContext
+    enabled: true
+    name: stage
+  - context: inClusterContext
+    enabled: true
+    name: production
